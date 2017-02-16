@@ -63,7 +63,8 @@ function QF() {
   c = $("#constant").val();
   console.log(a,b,c);
   //results();
-  solutions();
+  $("#answers").hide();
+  $("#answers").fadeIn(1500);
   resetCanvas();
 }  // close QF
 
@@ -79,6 +80,7 @@ function results() {
   context.fill();
   $(".vertex").text("Vertex is at (" + vX+","+vY+")");
   $("#vertexForm").text("Vertex Form is y = "+a+"(x-"+vX+")^2 + "+vY);
+  $("#yInt").text("Y-Intercept is at = (0,"+c+")")
 }  // close results()
 
  
@@ -91,17 +93,25 @@ $("#solution1").text("The solutions are imaginary (no x-intercepts).");
 }
 else{
 // the quadratic formula needs to be typed below assiging x1 and x2
-x1 = ((b*1)+(d*1))/(2*a)
-x2 = ((b*1)-(d*1))/(2*a)
+x1 = (-1*b+d**.5)/(2*a)
+x2 = (1*b+d**.5)/(2*a)
 x1 = x1.toFixed(1);
 x2 = x2.toFixed(1);
-$("#solution1").text("x = " + x1);
-$("#solution2").text("x = " + x2);
+$("#solution1").text("x-intercept= " + x1);
+$("#solution2").text("x-intercept= " + x2);
 context.fillStyle="purple";
+
 context.beginPath();
-context.arc(w/2+x1*k,h/2-vY*k,5,0,6.28);
+context.arc(w/2+x1*k,h/2,5,0,6.28);
 context.fill();
 
+context.beginPath();
+context.arc(w/2-x2*k,h/2,5,0,6.28);
+context.fill();        
+
+context.beginPath();
+context.arc(w/2,h/2-c*k,5,0,6.28);
+context.fill();
 }
 
 } //close solution
@@ -126,8 +136,11 @@ function zoomIn() {
   resetCanvas();
 }
 function zoomOut() {
+  if(k>5) {
   k = k - 2;
   resetCanvas();
+}
+  
 }
 
 function resetCanvas() {
@@ -135,6 +148,7 @@ function resetCanvas() {
   grid();
   graphQuad();
   results();
+  solutions();
 }
 
 function doMouseMove(event) {

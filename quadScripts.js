@@ -78,6 +78,10 @@ function results() {
   context.beginPath();
   context.arc(w/2+vX*k,h/2-vY*k,5,0,6.28);
   context.fill();
+  context.fillStyle="purple";
+  context.beginPath();
+  context.arc(w/2,h/2-c*k,5,0,6.28);
+  context.fill();
   $(".vertex").text("Vertex is at (" + vX+","+vY+")");
   $("#vertexForm").text("Vertex Form is y = "+a+"(x-"+vX+")^2 + "+vY);
   $("#yInt").text("Y-Intercept is at = (0,"+c+")")
@@ -99,7 +103,6 @@ x1 = x1.toFixed(1);
 x2 = x2.toFixed(1);
 $("#solution1").text("x-intercept= " + x1);
 $("#solution2").text("x-intercept= " + x2);
-context.fillStyle="purple";
 
 context.beginPath();
 context.arc(w/2+x1*k,h/2,5,0,6.28);
@@ -109,9 +112,6 @@ context.beginPath();
 context.arc(w/2-x2*k,h/2,5,0,6.28);
 context.fill();        
 
-context.beginPath();
-context.arc(w/2,h/2-c*k,5,0,6.28);
-context.fill();
 }
 
 } //close solution
